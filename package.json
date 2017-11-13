@@ -1,0 +1,28 @@
+{
+  "name": "storage-broth",
+  "version": "0.0.1",
+  "description": "The broth for storing files in NodeJS.",
+  "main": "index.js",
+  "scripts": {
+    "test": "haha no"
+  },
+  "repository": "git@github.com:robmclarty/storage-broth.git",
+  "author": "Rob McLarty <r@robmclarty.com> (http://robmclarty.com)",
+  "license": "MIT",
+  "engines": {
+    "node": ">= 8.0.0"
+  },
+  "keywords": [
+    "storage",
+    "store",
+    "file",
+    "disk",
+    "persist",
+    "s3",
+  ],
+  "dependencies": {
+    "mkdirp": "^0.5.1",
+    "aws-sdk": "^2.149.0",
+    "crypto-butter": "^0.0.1"
+  }
+}
