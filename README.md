@@ -1,6 +1,6 @@
 # Storage Broth
 
-A tasty broth with which you can add your own storage meat for your NodeJS app.
+A tasty NodeJS broth to which you can add your own file storage ingredients.
 
 ## License
 
