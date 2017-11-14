@@ -8,7 +8,6 @@ const fs = require('fs')
 const path = require('path')
 const mkdirp = require('mkdirp')
 const crypto = require('crypto-butter')
-const AWS = require('aws-sdk')
 
 // Local FS
 // --------
@@ -138,6 +137,8 @@ const storage = (opts = {
 }) => {
   switch (type) {
   case 'S3':
+    const AWS = require('aws-sdk')
+
     // AWS.config.update({
     //   accessKeyId: s3.accessKeyId,
     //   secretAccessKey: s3.secretAccessKey,
