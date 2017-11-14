@@ -18,7 +18,7 @@
     "file",
     "disk",
     "persist",
-    "s3",
+    "s3"
   ],
   "dependencies": {
     "mkdirp": "^0.5.1",
