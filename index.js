@@ -119,7 +119,7 @@ const getCryptoFile = (secret, salt) => getFile => path => {
 // Main Function
 // -------------
 
-const storage = (opts = {
+const storage = ({
   rootPath = '/', // `/full/absolute/path/to/storage/location`
   crypto = {
     secret: '',
