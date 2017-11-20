@@ -1,6 +1,6 @@
 {
   "name": "storage-broth",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A tasty NodeJS broth to which you can add your own file storage ingredients.",
   "main": "index.js",
   "scripts": {
