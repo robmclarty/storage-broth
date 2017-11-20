@@ -64,10 +64,10 @@ const saveFileS3 = s3 => (path, data) => new Promise((resolve, reject) => {
     Key: path.basename(path),
     Body: data,
     ACL: 'private'
-  }, (err, data) => {
+  }, (err, output) => {
     if (err) reject(err)
 
-    resolve(path)
+    resolve(output)
   })
 })
 
