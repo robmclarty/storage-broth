@@ -5,7 +5,7 @@
 'use strict'
 
 const fs = require('fs')
-const path = require('path')
+const pathTool = require('path')
 const mkdirp = require('mkdirp')
 const crypto = require('crypto-butter')
 
@@ -61,7 +61,7 @@ const removeFileLocal = rootPath => path => new Promise((resolve, reject) => {
 // Ref: https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#putObject-property
 const saveFileS3 = s3 => (path, data) => new Promise((resolve, reject) => {
   s3.putObject({
-    Key: path.basename(path),
+    Key: pathTool.basename(path),
     Body: data,
     ACL: 'private'
   }, (err, output) => {
@@ -74,7 +74,7 @@ const saveFileS3 = s3 => (path, data) => new Promise((resolve, reject) => {
 // Ref: https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#getObject-property
 const getFileS3 = s3 => path => new Promise((resolve, reject) => {
   s3.getObject({
-    Key: path.basename(path)
+    Key: pathTool.basename(path)
   }, (err, data) => {
     if (err) reject(err)
 
@@ -85,7 +85,7 @@ const getFileS3 = s3 => path => new Promise((resolve, reject) => {
 // Ref: https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#deleteObject-property
 const removeFileS3 = s3 => path => new Promise((resolve, reject) => {
   s3.deleteObject({
-    Key: path.basename(path)
+    Key: pathTool.basename(path)
   }, (err, data) => {
     if (err) reject(err)
 
@@ -136,7 +136,7 @@ const storage = ({
   }
 }) => {
   switch (type) {
-  case 'S3':
+  case 's3':
     const AWS = require('aws-sdk')
 
     // AWS.config.update({
@@ -147,7 +147,7 @@ const storage = ({
     // })
 
     // Ref: https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#constructor-property
-    const s3 = new AWS.S3({
+    const s3obj = new AWS.S3({
       params: {
         Bucket: s3.bucket
       },
@@ -158,11 +158,11 @@ const storage = ({
     })
 
     return {
-      saveFile: saveFileS3(s3),
-      getFile: getFileS3(s3),
-      removeFile: removeFileS3(s3),
-      saveCryptoFile: saveCryptoFile(crypto.secret, crypto.salt)(saveFileS3(s3)),
-      getCryptoFile: getCryptoFile(crypto.secret, crypto.salt)(getFileS3(s3))
+      saveFile: saveFileS3(s3obj),
+      getFile: getFileS3(s3obj),
+      removeFile: removeFileS3(s3obj),
+      saveCryptoFile: saveCryptoFile(crypto.secret, crypto.salt)(saveFileS3(s3obj)),
+      getCryptoFile: getCryptoFile(crypto.secret, crypto.salt)(getFileS3(s3obj))
     }
   case 'azure':
   case 'google':
